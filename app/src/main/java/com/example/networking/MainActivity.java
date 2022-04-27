@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -14,29 +19,36 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     //Test commit
 
-    private ArrayList<String> mountainList = new ArrayList<>();
+    private ArrayList<Mountain> mountainList = new ArrayList<>();
 
     private RecyclerView recyclerView;
+    MountainAdapter mountainAdapter;
 
-    private final String JSON_URL = "HTTPS_URL_TO_JSON_DATA_CHANGE_THIS_URL";
-    private final String JSON_FILE = "mountains.json";
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new JsonFile(this, this).execute(JSON_FILE);
+
+        new JsonTask(this).execute(JSON_URL);
+
+
 
         recyclerView = findViewById(R.id.recyclerView);
-        MountainAdapter mountainAdapter = new MountainAdapter(mountainList);
-        recyclerView.setAdapter(mountainAdapter);
+        mountainAdapter = new MountainAdapter(this, mountainList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
+        recyclerView.setAdapter(mountainAdapter);
     }
 
     @Override
     public void onPostExecute(String json) {
-        mountainList.add(json);
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<ArrayList<Mountain>>() {}.getType();
+        ArrayList<Mountain> fetchedMountainList = gson.fromJson(json, type);
+        mountainList.addAll(fetchedMountainList);
+        mountainAdapter.notifyDataSetChanged();
         Log.d("MainActivity", json);
     }
 

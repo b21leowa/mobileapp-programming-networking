@@ -1,5 +1,6 @@
 package com.example.networking;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 
 public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.MyViewHolder> {
 
-    private ArrayList<String> mountains;
+    private ArrayList<Mountain> mountains;
 
-    public MountainAdapter(ArrayList<String> mountains){
+    public MountainAdapter(Context context, ArrayList<Mountain> mountains){
         this.mountains = mountains;
     }
 
@@ -27,7 +28,9 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.mountainName.setText(mountains.get(position));
+        holder.mountainName.setText(mountains.get(position).getName());
+        holder.mountainLocation.setText(mountains.get(position).getLocation());
+
     }
 
     @Override
@@ -36,12 +39,12 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.MyView
     }
 
     public class MyViewHolder  extends RecyclerView.ViewHolder{
-        private TextView mountainName;
-        private TextView mountainLocation;
-        private TextView mountainSize;
+        private final TextView mountainName;
+        private final TextView mountainLocation;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mountainName = itemView.findViewById(R.id.mountain_name);
+            mountainLocation = itemView.findViewById(R.id.mountain_location);
         }
     }
 }
