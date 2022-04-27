@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     //Test commit
 
-    ArrayList<String> mountainList;
+    private ArrayList<String> mountainList = new ArrayList<>();
 
     private RecyclerView recyclerView;
 
@@ -24,14 +25,18 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         new JsonFile(this, this).execute(JSON_FILE);
 
+        recyclerView = findViewById(R.id.recyclerView);
         MountainAdapter mountainAdapter = new MountainAdapter(mountainList);
+        recyclerView.setAdapter(mountainAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
     }
 
     @Override
     public void onPostExecute(String json) {
+        mountainList.add(json);
         Log.d("MainActivity", json);
     }
 

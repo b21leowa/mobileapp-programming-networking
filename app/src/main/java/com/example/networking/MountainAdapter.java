@@ -1,7 +1,9 @@
 package com.example.networking;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,22 +21,27 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.mountainName.setText(mountains.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.mountains.size();
     }
 
     public class MyViewHolder  extends RecyclerView.ViewHolder{
+        private TextView mountainName;
+        private TextView mountainLocation;
+        private TextView mountainSize;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            mountainName = itemView.findViewById(R.id.mountain_name);
         }
     }
 }
