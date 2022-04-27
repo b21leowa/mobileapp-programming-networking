@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonTask(this).execute(JSON_URL);
 
-
-
         recyclerView = findViewById(R.id.recyclerView);
         mountainAdapter = new MountainAdapter(this, mountainList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
