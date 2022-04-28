@@ -9,6 +9,7 @@ The final commit I added uses-permission for internet, then fetched the data to 
 Then i did a Mountain class of all the data is needed with getters and now have a Mountain object. I also fixed the recyclerView and it can now display the mountains with the corresponding location.
 gson creates an object from the json and inserts the data to the right variables in Mountain constructor.
 
+Added Size in the recyclerView and added a getSizeString in Mountain.
 
 
 ```Java
