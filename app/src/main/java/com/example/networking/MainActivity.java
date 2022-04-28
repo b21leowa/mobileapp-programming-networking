@@ -17,8 +17,6 @@ import java.util.ArrayList;
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
-    //Test commit
-
     private ArrayList<Mountain> mountainList = new ArrayList<>();
 
     private RecyclerView recyclerView;

@@ -6,6 +6,7 @@ public class Mountain {
     private String ID;
     private String name;
     private int feet;
+
     @SerializedName("size")
     private int size;
     private String location;
@@ -15,6 +16,10 @@ public class Mountain {
         this.name = name;
         this.location = location;
         this.size = size;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public String getID() {
