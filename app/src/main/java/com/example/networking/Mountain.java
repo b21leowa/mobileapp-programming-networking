@@ -22,6 +22,10 @@ public class Mountain {
         return size;
     }
 
+    public String getSizeString () {
+        return ""+size;
+    }
+
     public String getID() {
         return ID;
     }

@@ -11,32 +11,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Testing"
+        tools:text="Test"
         android:id="@+id/mountain_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         />
 
     <TextView
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:id="@+id/mountain_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="another item"
+        tools:text="another item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mountain_name"
+        app:layout_constraintTop_toBottomOf="@+id/mountain_name"
 
         />
 
     <TextView
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:id="@+id/mountain_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Size"
+        tools:text="Size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mountain_name"
+        app:layout_constraintTop_toBottomOf="@+id/mountain_location"
 
         />
 
